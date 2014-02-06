@@ -17,6 +17,10 @@ defmodule Mix.Tasks.Generate do
   And CAMELISED_NAME is a module name like MyModuleName or
   MyNameSpace.MyModuleName.
   """
+  def run([]) do
+    Mix.Task.run("help", ["generate"])
+  end
+
   def run(["module", module_name]) do
     generate_module(module_name)
   end
