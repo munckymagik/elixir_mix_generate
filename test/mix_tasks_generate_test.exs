@@ -1,6 +1,10 @@
 defmodule Mix.Tasks.GenerateTest do
   use ExUnit.Case
 
+  # ---------------------------------------------------------------------------
+  # Tests
+  # ---------------------------------------------------------------------------
+
   test "module creates new module file" do
     in_tmp "test_module", fn ->
       Mix.Tasks.Generate.run ["module", "ModName"]
@@ -25,10 +29,18 @@ defmodule Mix.Tasks.GenerateTest do
     end
   end
 
+  # ---------------------------------------------------------------------------
+  # Callbacks
+  # ---------------------------------------------------------------------------
+
   def teardown do
     # Clear the mailbox between tests
     Mix.shell.flush
   end
+
+  # ---------------------------------------------------------------------------
+  # Helpers
+  # ---------------------------------------------------------------------------
 
   defp assert_file(file) do
     assert File.regular?(file), "Expected #{file} to exist, but does not"
