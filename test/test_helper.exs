@@ -14,9 +14,11 @@ defmodule MixGenerateTest.Case do
   # Callbacks
   # ---------------------------------------------------------------------------
 
-  def teardown do
+  teardown do
     # Clear the mailbox between tests
     Mix.shell.flush
+
+    delete_tmp_paths
   end
 
   # ---------------------------------------------------------------------------
@@ -49,6 +51,10 @@ defmodule MixGenerateTest.Case do
     File.rm_rf! path
     File.mkdir_p! path
     File.cd! path, function
+  end
+
+  defp delete_tmp_paths do
+    File.rm_rf! tmp_path
   end
 
 end
