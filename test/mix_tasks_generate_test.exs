@@ -5,32 +5,35 @@ defmodule Mix.Tasks.GenerateTest do
   # Tests
   # ---------------------------------------------------------------------------
 
-  test "module creates new module file" do
+  test "module generator: creates new module file" do
     in_tmp "test_module", fn ->
       Mix.Tasks.Generate.run ["module", "ModName"]
+
       assert_file "lib/mod_name.ex"
     end
   end
 
-  test "new module file contains module definition" do
+  test "module generator: new file contains module definition" do
     in_tmp "test_module", fn ->
       Mix.Tasks.Generate.run ["module", "ModName"]
+
       assert_file "lib/mod_name.ex", fn (file) ->
         assert file =~ "defmodule ModName do"
       end
     end
   end
 
-  test "supports nested modules" do
+  test "module generator: supports nested modules" do
     in_tmp "test_module", fn ->
       Mix.Tasks.Generate.run ["module", "ModParent.ModChild"]
+
       assert_file "lib/mod_parent/mod_child.ex", fn (file) ->
         assert file =~ "defmodule ModParent.ModChild do"
       end
     end
   end
 
-  test "tells the user which files were created" do
+  test "module generator: tells the user which files were created" do
     in_tmp "test_module", fn ->
       Mix.Tasks.Generate.run ["module", "ModName"]
 
