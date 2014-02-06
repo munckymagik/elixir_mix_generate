@@ -22,8 +22,17 @@ defmodule Mix.Tasks.Generate do
       module_file_path(module_name), module_template(module_name))
   end
 
+  def run(["test", test_name]) do
+    Mix.Generator.create_file(
+      test_file_path(test_name), test_template(test_name))
+  end
+
   defp module_file_path(module_name) do
     Path.join("lib", "#{Mix.Utils.underscore(module_name)}.ex")
+  end
+
+  defp test_file_path(test_name) do
+    Path.join("test", "#{Mix.Utils.underscore(test_name)}.exs")
   end
 
   defp module_template(module_name) do
@@ -34,4 +43,15 @@ defmodule Mix.Tasks.Generate do
     """
   end
 
+  defp test_template(test_name) do
+    """
+    defmodule #{test_name} do
+      use ExUnit.Case
+
+      test "the truth" do
+        assert true
+      end
+    end
+    """
+  end
 end
