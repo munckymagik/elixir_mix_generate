@@ -15,10 +15,16 @@ defmodule Mix.Tasks.Generate do
     test     Generate an ExUnit test
   """
   def run(["module", module_name]) do
-    File.mkdir_p!("lib")
-    module_path = Path.join("lib", "#{module_name}.ex")
-    File.write! module_path, module_template(module_name)
+    write_file! module_file_path(module_name), module_template(module_name)
+  end
 
+  defp module_file_path(module_name) do
+    Path.join("lib", "#{module_name}.ex")
+  end
+
+  defp write_file!(file_path, file_contents) do
+    File.mkdir_p!(Path.dirname(file_path))
+    File.write! file_path, file_contents
   end
 
   defp module_template(module_name) do
