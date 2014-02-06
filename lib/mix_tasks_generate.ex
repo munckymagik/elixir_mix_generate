@@ -6,13 +6,16 @@ defmodule Mix.Tasks.Generate do
   @moduledoc """
   Generate boilerplate code from templates
 
-    mix generate GENERATOR name
+    mix generate GENERATOR CAMELISED_NAME
 
   Where GENERATOR is one of:
 
     module   Generate a module
     modtest  Generate a module and accompanying ExUnit test
     test     Generate an ExUnit test
+
+  And CAMELISED_NAME is a module name like MyModuleName or
+  MyNameSpace.MyModuleName.
   """
   def run(["module", module_name]) do
     write_file! module_file_path(module_name), module_template(module_name)
