@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.GenerateTest do
+defmodule Mix.Tasks.GenerateModuleTest do
   use ExUnit.Case
 
   # ---------------------------------------------------------------------------
