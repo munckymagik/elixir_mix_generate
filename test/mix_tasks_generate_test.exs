@@ -17,6 +17,18 @@ defmodule Mix.Tasks.GenerateTest do
     end
   end
 
+  test "tells the user which files were created" do
+    in_tmp "test_module", fn ->
+      Mix.Tasks.Generate.run ["module", "ModName"]
+
+      assert_received { :mix_shell, :info, ["* creating lib/mod_name.ex"] }
+    end
+  end
+
+  def teardown do
+    # Clear the mailbox between tests
+    Mix.shell.flush
+  end
 
   defp assert_file(file) do
     assert File.regular?(file), "Expected #{file} to exist, but does not"

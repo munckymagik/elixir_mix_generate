@@ -18,16 +18,12 @@ defmodule Mix.Tasks.Generate do
   MyNameSpace.MyModuleName.
   """
   def run(["module", module_name]) do
-    write_file! module_file_path(module_name), module_template(module_name)
+    Mix.Generator.create_file(
+      module_file_path(module_name), module_template(module_name))
   end
 
   defp module_file_path(module_name) do
     Path.join("lib", "#{Mix.Utils.underscore(module_name)}.ex")
-  end
-
-  defp write_file!(file_path, file_contents) do
-    File.mkdir_p!(Path.dirname(file_path))
-    File.write! file_path, file_contents
   end
 
   defp module_template(module_name) do
