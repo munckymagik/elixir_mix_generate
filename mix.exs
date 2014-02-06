@@ -1,8 +1,8 @@
-defmodule MixCodegen.Mixfile do
+defmodule MixGenerate.Mixfile do
   use Mix.Project
 
   def project do
-    [ app: :mix_codegen,
+    [ app: :mix_generate,
       version: "0.0.1",
       elixir: "~> 0.12.3",
       deps: deps ]
