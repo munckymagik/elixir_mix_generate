@@ -1,10 +1,6 @@
 defmodule Mix.Tasks.GenerateModuleTest do
   use MixGenerateTest.Case
 
-  # ---------------------------------------------------------------------------
-  # Tests
-  # ---------------------------------------------------------------------------
-
   test "module generator: creates new module file" do
     in_tmp "test_module", fn ->
       Mix.Tasks.Generate.run ["module", "ModName"]
