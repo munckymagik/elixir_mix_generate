@@ -6,9 +6,9 @@ defmodule Mix.Tasks.Generate do
   @moduledoc """
   Generate boilerplate code from templates
 
-    mix generate ARTIFACT name
+    mix generate GENERATOR name
 
-  Where ARTIFACT is one of:
+  Where GENERATOR is one of:
 
     module   Generate a module
     modtest  Generate a module and accompanying ExUnit test
