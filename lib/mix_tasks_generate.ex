@@ -18,11 +18,24 @@ defmodule Mix.Tasks.Generate do
   MyNameSpace.MyModuleName.
   """
   def run(["module", module_name]) do
+    generate_module(module_name)
+  end
+
+  def run(["test", test_name]) do
+    generate_test(test_name)
+  end
+
+  def run(["modtest", module_name]) do
+    generate_module(module_name)
+    generate_test("#{module_name}Test")
+  end
+
+  defp generate_module(module_name) do
     Mix.Generator.create_file(
       module_file_path(module_name), module_template(module_name))
   end
 
-  def run(["test", test_name]) do
+  defp generate_test(test_name) do
     Mix.Generator.create_file(
       test_file_path(test_name), test_template(test_name))
   end
