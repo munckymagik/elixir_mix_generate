@@ -19,7 +19,7 @@ defmodule Mix.Tasks.Generate do
   end
 
   defp module_file_path(module_name) do
-    Path.join("lib", "#{module_name}.ex")
+    Path.join("lib", "#{Mix.Utils.underscore(module_name)}.ex")
   end
 
   defp write_file!(file_path, file_contents) do
@@ -29,7 +29,7 @@ defmodule Mix.Tasks.Generate do
 
   defp module_template(module_name) do
     """
-    defmodule #{Mix.Utils.camelize(module_name)} do
+    defmodule #{module_name} do
 
     end
     """

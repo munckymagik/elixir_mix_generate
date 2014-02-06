@@ -3,14 +3,14 @@ defmodule Mix.Tasks.GenerateTest do
 
   test "module creates new module file" do
     in_tmp "test_module", fn ->
-      Mix.Tasks.Generate.run ["module", "mod_name"]
+      Mix.Tasks.Generate.run ["module", "ModName"]
       assert_file "lib/mod_name.ex"
     end
   end
 
-  test "new module file contains module definition with camelised name" do
+  test "new module file contains module definition" do
     in_tmp "test_module", fn ->
-      Mix.Tasks.Generate.run ["module", "mod_name"]
+      Mix.Tasks.Generate.run ["module", "ModName"]
       assert_file "lib/mod_name.ex", fn (file) ->
         assert file =~ "defmodule ModName do"
       end
