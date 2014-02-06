@@ -52,7 +52,7 @@ Creates ```test/my_new_test.exs``` containing a new test called ```MyNewTest```.
 Generates an empty module and a corresponding test script based on the given name:
 
 ```
-$ mix generate modtest MyNewModule
+mix generate modtest MyNewModule
 ```
 
 Creates:
