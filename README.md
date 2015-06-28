@@ -75,4 +75,4 @@ defmodule MyParent.MyModule do
 end
 ```
 
-  [1]: http://elixir-lang.org/getting_started/mix/1.html
+  [1]: http://elixir-lang.org/getting-started/mix-otp/introduction-to-mix.html
