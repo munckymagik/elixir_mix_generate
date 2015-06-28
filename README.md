@@ -20,7 +20,7 @@ mix test
 Install (per user):
 
 ```
-mix do archive, local.install
+mix do archive.build, archive.install
 ```
 
 ## Usage
