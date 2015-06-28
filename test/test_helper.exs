@@ -1,4 +1,4 @@
-Mix.shell(Mix.Shell.Process)
+Mix.shell(Mix.Shell.Process) # Redirect Mix.shell IO to process mailbox
 ExUnit.start
 
 defmodule MixGenerateTest.Case do
@@ -14,11 +14,9 @@ defmodule MixGenerateTest.Case do
   # Callbacks
   # ---------------------------------------------------------------------------
 
-  teardown do
-    # Clear the mailbox between tests
-    Mix.shell.flush
-
-    delete_tmp_paths
+  setup do
+    on_exit(&Mix.shell.flush/0) # Clear the process mailbox between tests
+    on_exit(&delete_tmp_paths/0)
   end
 
   # ---------------------------------------------------------------------------
@@ -29,7 +27,7 @@ defmodule MixGenerateTest.Case do
     assert File.regular?(file), "Expected #{file} to exist, but does not"
   end
 
-  def assert_file(file, match) when is_regex(match) do
+  def assert_file(file, match = %Regex{}) do
     assert_file file, &(&1 =~ match)
   end
 

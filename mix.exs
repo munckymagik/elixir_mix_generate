@@ -4,7 +4,7 @@ defmodule MixGenerate.Mixfile do
   def project do
     [ app: :mix_generate,
       version: "0.0.1",
-      elixir: "~> 0.12.3",
+      elixir: "~> 1.0",
       deps: deps ]
   end
 
